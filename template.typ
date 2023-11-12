@@ -98,19 +98,20 @@
 		}
 	}
 	// set list settings
-	set list(indent: (normal-size / 12pt) * 0.25in, body-indent: 0.5 * normal-size)
-  set enum(indent: (normal-size / 12pt) * 0.25in, body-indent: 0.5 * normal-size)
+	set list(indent: (normal-size / 12pt) * 0.25in, body-indent: 0.5 * normal-size, spacing: 2em)
+  set enum(indent: (normal-size / 12pt) * 0.25in, body-indent: 0.5 * normal-size, spacing: 2em)
 	// set equation settings
   show math.equation: set block(below: 0.67 * normal-size, above: 0.75 * normal-size)
   show math.equation: set text(weight: 400)
 	// set bibliography style
 	set bibliography(style: "american-psychological-association", title: "References")
 	// set line spacing
+ set par(leading: 2em)
+ show heading: set block(above: 2em, below: 2em)
 	// title page
 	v(15 * normal-size, weak: false)
 	align(center,
 		{
-			set par(leading: normal-size)
 			text(size: normal-size, weight: "bold", title)
 			v(1 * normal-size, weak: false)
 			if subtitle == none { [] } else { text(size: normal-size, subtitle) }
