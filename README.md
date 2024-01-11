@@ -1,3 +1,6 @@
-# apa-typst
+# typst-templates
 
- APA-Style Paper Template in Typst
+My personal templates for Typst:
+
+- APA-Style Paper
+- Notes Template
