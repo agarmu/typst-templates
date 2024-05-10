@@ -1,0 +1,15 @@
+#let inv(x) = $#x^(-1)$
+#let ll = $lambda$
+#let span = $op("Span")$
+#let arccot = $op("arccot")$
+#let rank = $op("rank")$
+#let null = $op("null")$
+#let adj = $op("adj")$
+#let col = $op("Col")$
+#let row = $op("Row")$
+#let inv(x) = $#x^(-1)$
+#let comp = $" " circle.stroked.small " "$
+#let qed = $square.stroked.small$ 
+#let bg(x) = $lr((#x), size: #150%)$
+#let pt(u) = $cal(P)_(#u)$
+#let co(u) = $cal(C)_(#u)$
