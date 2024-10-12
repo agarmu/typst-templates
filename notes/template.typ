@@ -22,7 +22,7 @@
   author: "Author",
 
   // The paper size to use.
-  paper-size: "a4",
+  paper-size: "letter",
 
   // Date that will be displayed on cover page.
   // The value needs to be of the 'datetime' type.
@@ -75,7 +75,9 @@
   // The content of your work.
   body,
 ) = {
-  
+  set text(font: "Latin Modern Roman")
+  show math.equation: set text(font: "Latin Modern Math")
+  show raw: set text(font: "Latin Modern Mono")
   set math.mat(delim: "[")
   set math.vec(delim: "[")
   // Set the document's metadata.
@@ -135,7 +137,8 @@
 
   // Display preface as the second page.
   if preface != none {
-    page(preface)
+    page(margin: (x: 1.75in),
+      align(center + horizon, preface))
   }
 
   // Indent nested entires in the outline.
@@ -162,7 +165,10 @@
       // Are we on a page that starts a chapter?
       let target = heading.where(level: 1)
       if query(target).any(it => it.location().page() == i) {
-        return align(aln)[#i]
+        return align(
+          aln,
+          text(size: 12pt, weight: "regular")[#i]
+          )
       }
 
       // Find the chapter of the section we are currently in.
@@ -175,7 +181,7 @@
             if is-odd {
               align(aln)[#chapter #h(gap) #i]
             } else {
-              align(aln)[#i #h(gap) #chapter]
+              align(aln, text(size: 12pt, weight: "regular")[#i #h(gap) #chapter])
             }
         }
       }
@@ -210,27 +216,22 @@
     // Start chapters on a new page.
     show heading: it => {
     if it.level == 1 {
-      if chapter-pagebreak { pagebreak() }
-      block(
-        width: 100%,
-        height: 100%,
-      )[
-        #v(5em)
-        #align(
-          center,
+      page(
+        [#align(
+          center + horizon,
           text(
             size: 30pt,
             [Chapter #counter(heading).display() \ #emph(it.body)]
           ))
-        #v(5em)
-      ]
+        ]
+      )    
     } else if it.level == 2 {
       if chapter-pagebreak { v(2em) }
       block(
         width: 100%,
         stroke: (left: 
-        5pt + gradient.linear(rgb("#2E8B57").darken(20%),
-      rgb("#2E8B57").lighten(60%), angle: 90deg)
+        5pt + gradient.linear(rgb("#888888").darken(20%),
+      rgb("#888888").lighten(60%), angle: 90deg)
       ),
         inset: (left: 12pt, top: 10pt, bottom: 15pt)
       )[
@@ -238,7 +239,7 @@
           columns: (auto, 0.5em, 1fr),
           text(
           size: 20pt,
-          fill: rgb("#2E8B57").darken(30%),
+          fill: rgb("#888888").darken(30%),
           counter(heading).display()
         ),
         [],
